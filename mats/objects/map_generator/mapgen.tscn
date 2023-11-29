@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://1rwi3c4bxmr8"]
 
-[ext_resource type="Texture2D" uid="uid://wa2rs1l12d2v" path="res://mats/imgs/cave/test.png" id="1_uourv"]
+[ext_resource type="Texture2D" uid="uid://fpu4nsgxemyq" path="res://mats/imgs/cave/test.png" id="1_uourv"]
 [ext_resource type="Script" path="res://mats/objects/map_generator/mapgen.gd" id="2_6mil7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2itbn"]

@@ -35,14 +35,11 @@ func load_data(origin,n):
 func get_gravity():
 	return gr_power
 func _ready():
-	if original_path=="":
-		original_path=str(get_path())
+	if original_path=="":original_path=str(get_path())
 	connect("save_data_changed",Callable(sls,"_save_node"))
 	connect("_load_data",Callable(sls,"_load_node"))
-	if !sls.sn.has(str(get_path())):
-		emit_signal("save_data_changed",save_data())
-	else:
-		emit_signal("_load_data",self,str(get_path()))
+	if !sls.sn.has(str(get_path())):emit_signal("save_data_changed",save_data())
+	else:emit_signal("_load_data",self,str(get_path()))
 var die:bool=false
 func _physics_process(delta):
 	if die==false:
@@ -79,7 +76,15 @@ func _physics_process(delta):
 				xv -= deacc/2 * delta
 				if xv < 0:xv = 0
 				velocity.x = sign(velocity.x) * xv
-		if jpress and manyjumpvalue<MultiJumpMaxValue:
+		
+		if gu.is_colliding():
+			$get_up/full_height.position.y=gu.to_local(gu.get_collision_point()).y
+			if !$get_up/full_height.is_colliding() and !ground and velocity.y>0:
+				global_position=gu.get_collision_point()
+				velocity=Vector2.ZERO
+		else:
+			$get_up/full_height.position.y=gu.target_position.y
+		if jpress and manyjumpvalue<MultiJumpMaxValue :
 			velocity.y = 0
 			velocity.y-=jump_power
 			manyjumpvalue+=1

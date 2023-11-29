@@ -1,0 +1,6 @@
+res://mats/main/main_game.tscn
+res://mats/objects/player/player.gd
+res://mats/objects/player/player.tscn
+res://mats/objects/jumppad/area_2d.tscn
+res://mats/objects/map_generator/mapgen.gd
+res://mats/objects/map_generator/mapgen.tscn

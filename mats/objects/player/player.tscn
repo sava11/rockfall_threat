@@ -25,11 +25,11 @@ jump_power = 300.0
 gr_power = 980.0
 
 [node name="get_up" type="RayCast2D" parent="."]
-position = Vector2(25, -35)
-target_position = Vector2(0, 15)
+position = Vector2(21, -48)
+target_position = Vector2(0, 16)
 
 [node name="full_height" type="RayCast2D" parent="get_up"]
-position = Vector2(0, 15)
+position = Vector2(0, 16)
 target_position = Vector2(0, -55)
 
 [node name="c" type="CollisionPolygon2D" parent="."]

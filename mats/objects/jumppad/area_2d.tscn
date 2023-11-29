@@ -11,6 +11,7 @@ size = Vector2(24, 8)
 script = ExtResource("1_aebyb")
 
 [node name="c" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_or3s0")
 
 [node name="cp" type="CPUParticles2D" parent="."]
@@ -25,6 +26,7 @@ gravity = Vector2(0, -98)
 color_ramp = SubResource("Gradient_0kc1u")
 
 [node name="asp" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -4)
 bus = &"effects"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

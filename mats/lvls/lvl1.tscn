@@ -1,0 +1,264 @@
+[gd_scene load_steps=18 format=3 uid="uid://do6ekr4ebxv6w"]
+
+[ext_resource type="PackedScene" uid="uid://c13swd4n5xul" path="res://mats/objects/door/door.tscn" id="1_tomfm"]
+[ext_resource type="PackedScene" uid="uid://1ujd5agx1mf8" path="res://mats/objects/cr_lvls/line.tscn" id="3_7d86w"]
+[ext_resource type="PackedScene" uid="uid://ia3kf3sf7eqr" path="res://mats/objects/activeate_zone/activate_zone.tscn" id="4_1fr7a"]
+[ext_resource type="PackedScene" uid="uid://c0kxwu11p32ck" path="res://mats/objects/t_lvl/big_a.tscn" id="4_s6xad"]
+[ext_resource type="PackedScene" uid="uid://siqd3nx26uhc" path="res://mats/objects/button-leveller/laveler.tscn" id="5_4h87a"]
+[ext_resource type="PackedScene" uid="uid://bygq6v72nrft8" path="res://mats/objects/laser/laser.tscn" id="6_l5cvs"]
+[ext_resource type="PackedScene" uid="uid://6xesqvg8ugkg" path="res://mats/objects/check_laser/check_laser.tscn" id="7_6l64a"]
+[ext_resource type="Script" path="res://test.gd" id="8_y82r4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_077do"]
+resource_local_to_scene = true
+size = Vector2(320, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4k4w"]
+resource_local_to_scene = true
+size = Vector2(20, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpab8"]
+resource_local_to_scene = true
+size = Vector2(320, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atqm4"]
+resource_local_to_scene = true
+size = Vector2(20, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muvoc"]
+size = Vector2(320, 100)
+
+[sub_resource type="Animation" id="Animation_vucnu"]
+resource_name = "a"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(960, 80), Vector2(960, 200), Vector2(960, 270), Vector2(960, 350)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_koxoo"]
+_data = {
+"a": SubResource("Animation_vucnu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tmlw"]
+resource_local_to_scene = true
+size = Vector2(20, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i65mc"]
+resource_local_to_scene = true
+size = Vector2(20, 500)
+
+[node name="lvl1" type="Node2D"]
+metadata/_edit_horizontal_guides_ = []
+
+[node name="door" parent="." instance=ExtResource("1_tomfm")]
+position = Vector2(1140, 580)
+
+[node name="lock" parent="door/d" index="1"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/activate_zone/key", "/root/main/world/lvl1/check_laser/key")
+
+[node name="door2" parent="." instance=ExtResource("1_tomfm")]
+position = Vector2(590, 610)
+rotation = 1.5708
+speed = 200.0
+
+[node name="lock" parent="door2/d" index="1"]
+keys_paths = PackedStringArray("/root/main/world/lvl2/c/key", "/root/main/world/lvl1/c2/key")
+
+[node name="door3" parent="." instance=ExtResource("1_tomfm")]
+position = Vector2(590, 610)
+rotation = -1.5708
+speed = 200.0
+
+[node name="lock" parent="door3/d" index="1"]
+keys_paths = PackedStringArray("/root/main/world/lvl2/c/key", "/root/main/world/lvl1/c2/key")
+
+[node name="big_a" parent="." instance=ExtResource("4_s6xad")]
+position = Vector2(0, 500)
+
+[node name="c" parent="big_a" index="0"]
+position = Vector2(0, -170)
+shape = SubResource("RectangleShape2D_077do")
+
+[node name="c" parent="big_a/a" index="0"]
+position = Vector2(0, -170)
+shape = SubResource("RectangleShape2D_q4k4w")
+
+[node name="big_a2" parent="." instance=ExtResource("4_s6xad")]
+position = Vector2(590, 780)
+rotation = -1.5708
+scene_to_load = 2
+
+[node name="c" parent="big_a2" index="0"]
+shape = SubResource("RectangleShape2D_jpab8")
+
+[node name="c" parent="big_a2/a" index="0"]
+shape = SubResource("RectangleShape2D_atqm4")
+
+[node name="activate_zone" parent="." instance=ExtResource("4_1fr7a")]
+position = Vector2(1140, 540)
+
+[node name="key" parent="activate_zone" index="0"]
+drawing = false
+activate = true
+reset_when_blocked = true
+
+[node name="lock" parent="activate_zone/key" index="0"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/c/key")
+
+[node name="c" type="CollisionShape2D" parent="activate_zone"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_muvoc")
+
+[node name="c" parent="." instance=ExtResource("5_4h87a")]
+position = Vector2(780, 540)
+
+[node name="key" parent="c" index="1"]
+reset_when_blocked = true
+reset_value = true
+
+[node name="lock" parent="c/key" index="0"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/c2/key")
+
+[node name="c2" parent="." instance=ExtResource("5_4h87a")]
+position = Vector2(370, 540)
+
+[node name="ab" type="AnimatableBody2D" parent="."]
+position = Vector2(960, 80)
+script = ExtResource("8_y82r4")
+
+[node name="p" parent="ab" instance=ExtResource("3_7d86w")]
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(-10, -60, -10, 60, 10, 60, 10, -60)
+
+[node name="ap" type="AnimationPlayer" parent="ab"]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_koxoo")
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="p" parent="StaticBody2D" instance=ExtResource("3_7d86w")]
+color = Color(0.619608, 0.619608, 0.619608, 1)
+polygon = PackedVector2Array(0, 0, 1170, 0, 1170, 500, 1110, 500, 1110, 80, 0, 80)
+
+[node name="p2" parent="StaticBody2D" instance=ExtResource("3_7d86w")]
+position = Vector2(0, 570)
+color = Color(0.619608, 0.619608, 0.619608, 1)
+polygon = PackedVector2Array(660, 30, 730, 10, 1170, 10, 1170, 70, 700, 70, 700, 470, 660, 470)
+
+[node name="p3" parent="StaticBody2D" instance=ExtResource("3_7d86w")]
+position = Vector2(0, 570)
+color = Color(0.619608, 0.619608, 0.619608, 1)
+polygon = PackedVector2Array(0, 10, 450, 10, 520, 30, 520, 470, 480, 470, 480, 70, 0, 70)
+
+[node name="laser" parent="." instance=ExtResource("6_l5cvs")]
+position = Vector2(890, 570)
+rotation = 0.718676
+width = 10.0
+
+[node name="c" parent="laser/hirtbox" index="1"]
+shape = SubResource("RectangleShape2D_6tmlw")
+
+[node name="key" parent="laser" index="2"]
+drawing = false
+activate = true
+reset_when_blocked = true
+
+[node name="lock" parent="laser/key" index="0"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/c/key")
+
+[node name="laser2" parent="." instance=ExtResource("6_l5cvs")]
+position = Vector2(550, 90)
+rotation = 1.90283
+
+[node name="c" parent="laser2/hirtbox" index="1"]
+shape = SubResource("RectangleShape2D_i65mc")
+
+[node name="key" parent="laser2" index="2"]
+drawing = false
+activate = true
+reset_when_blocked = true
+
+[node name="check_laser" parent="." instance=ExtResource("7_6l64a")]
+position = Vector2(1110, 320)
+need_power = 2.0
+
+[node name="c3" type="Control" parent="."]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="t" type="RichTextLabel" parent="c3"]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 420.0
+offset_right = 850.0
+offset_bottom = 490.0
+text = "\"рычаг\" деактивирующий лазер"
+scroll_active = false
+
+[node name="t2" type="RichTextLabel" parent="c3"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 390.0
+offset_right = 470.0
+offset_bottom = 490.0
+text = "один \"рычаг\"  из двух, только 2 активных может активировать дверь снизу"
+scroll_active = false
+
+[node name="t3" type="RichTextLabel" parent="c3"]
+layout_mode = 0
+offset_left = 980.0
+offset_top = 500.0
+offset_right = 1210.0
+offset_bottom = 580.0
+text = "самоткрывающаяся дверь если персонаж зашол в зону активации"
+
+[node name="t4" type="RichTextLabel" parent="c3"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 260.0
+offset_right = 1170.0
+offset_bottom = 320.0
+text = "достаточно ли мощности лазеров?"
+
+[node name="t5" type="RichTextLabel" parent="c3"]
+layout_mode = 0
+offset_left = -70.0
+offset_top = 300.0
+offset_right = 200.0
+offset_bottom = 400.0
+text = "< \"бутылочное горлышко\" >
+<			визуализация для 	>
+<				наглядности			>"
+
+[editable path="door"]
+[editable path="door2"]
+[editable path="door3"]
+[editable path="big_a"]
+[editable path="big_a2"]
+[editable path="activate_zone"]
+[editable path="activate_zone/key"]
+[editable path="c"]
+[editable path="c/key"]
+[editable path="c2"]
+[editable path="c2/key"]
+[editable path="laser"]
+[editable path="laser/key"]
+[editable path="laser2"]
+[editable path="laser2/key"]
+[editable path="check_laser"]

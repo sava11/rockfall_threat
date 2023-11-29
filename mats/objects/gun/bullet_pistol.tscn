@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://f4spp4jqyebq"]
+
+[ext_resource type="Script" path="res://mats/objects/gun/pistol.gd" id="1_wfe4l"]
+[ext_resource type="PackedScene" uid="uid://b836uxadf3fen" path="res://mats/objects/bullets/bullet/bullet.tscn" id="2_yqmeh"]
+
+[node name="bullet_pistol" type="Node2D"]
+script = ExtResource("1_wfe4l")
+bullet_scene = ExtResource("2_yqmeh")
+bullet_speed = 500.0
+
+[node name="bsp" type="Marker2D" parent="."]
+position = Vector2(16, -3)
+
+[node name="p" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-3, 3, -2, -5, 12, -5, 12, -1, 1, -1, 1, 5)

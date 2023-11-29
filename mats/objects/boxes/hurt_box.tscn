@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://heog28crk5py"]
+
+[ext_resource type="Script" path="res://mats/objects/boxes/hurt_box.gd" id="1"]
+
+[node name="hurt_box" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1")
+
+[node name="col" type="CollisionPolygon2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="invi_ended" from="." to="." method="_on_hurt_box_invi_ended"]
+[connection signal="invi_started" from="." to="." method="_on_hurt_box_invi_started"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

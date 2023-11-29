@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bygq6v72nrft8"]
+
+[ext_resource type="Script" path="res://mats/objects/laser/laser.gd" id="1_qgv70"]
+[ext_resource type="PackedScene" uid="uid://dbxi33r2ee1kk" path="res://mats/objects/boxes/hitbox.tscn" id="1_y58xu"]
+[ext_resource type="PackedScene" uid="uid://bo2oj0i7h2jbo" path="res://mats/objects/key_lock/key.tscn" id="2_awlvd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnswo"]
+resource_local_to_scene = true
+size = Vector2(20, 500)
+
+[node name="laser" type="Node2D"]
+script = ExtResource("1_qgv70")
+
+[node name="r" type="RayCast2D" parent="."]
+target_position = Vector2(0, -1000)
+
+[node name="hirtbox" parent="." groups=["energy"] instance=ExtResource("1_y58xu")]
+collision_layer = 80
+collision_mask = 64
+
+[node name="c" type="CollisionShape2D" parent="hirtbox"]
+position = Vector2(0, -240)
+shape = SubResource("RectangleShape2D_tnswo")
+
+[node name="key" parent="." instance=ExtResource("2_awlvd")]
+
+[node name="l" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0.627451, 0, 0, 1)
+
+[connection signal="activated" from="key/lock" to="." method="_on_lock_activated"]
+
+[editable path="key"]

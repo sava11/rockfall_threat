@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfe22bmixbbc5"]
+
+[ext_resource type="Script" path="res://mats/objects/boxes/custom_dmg_area.gd" id="1_xbmu5"]
+
+[node name="custom_dmg_area" type="Area2D"]
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("1_xbmu5")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

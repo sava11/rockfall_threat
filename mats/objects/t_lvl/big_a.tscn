@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0kxwu11p32ck"]
+
+[ext_resource type="Script" path="res://mats/objects/t_lvl/big_a.gd" id="1_xcg5u"]
+[ext_resource type="Script" path="res://mats/objects/t_lvl/a.gd" id="2_fs5gu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_151c5"]
+resource_local_to_scene = true
+size = Vector2(320, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewpr0"]
+resource_local_to_scene = true
+size = Vector2(20, 160)
+
+[node name="big_a" type="Area2D" groups=["SN", "load_lvl"]]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("1_xcg5u")
+scene_to_load = 1
+
+[node name="c" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_151c5")
+
+[node name="a" type="Area2D" parent="."]
+position = Vector2(-160, 0)
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("2_fs5gu")
+
+[node name="c" type="CollisionShape2D" parent="a"]
+shape = SubResource("RectangleShape2D_ewpr0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="a" to="a" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="a" to="a" method="_on_body_exited" flags=18]

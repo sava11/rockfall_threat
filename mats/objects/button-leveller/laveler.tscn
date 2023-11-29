@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://siqd3nx26uhc"]
+
+[ext_resource type="Script" path="res://mats/objects/button-leveller/c.gd" id="1_g0c58"]
+[ext_resource type="PackedScene" uid="uid://bo2oj0i7h2jbo" path="res://mats/objects/key_lock/key.tscn" id="2_3y0la"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u2arh"]
+radius = 30.0
+height = 120.0
+
+[node name="c" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_g0c58")
+
+[node name="c" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_u2arh")
+
+[node name="key" parent="." instance=ExtResource("2_3y0la")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+
+[editable path="key"]

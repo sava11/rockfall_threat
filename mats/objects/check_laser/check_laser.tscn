@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://6xesqvg8ugkg"]
+
+[ext_resource type="PackedScene" uid="uid://bo2oj0i7h2jbo" path="res://mats/objects/key_lock/key.tscn" id="1_2mno5"]
+[ext_resource type="Script" path="res://mats/objects/check_laser/check_laser.gd" id="1_pucbn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j34h7"]
+size = Vector2(20, 100)
+
+[node name="check_laser" type="Area2D" groups=["checker"]]
+collision_layer = 65
+collision_mask = 65
+script = ExtResource("1_pucbn")
+
+[node name="c" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j34h7")
+
+[node name="key" parent="." instance=ExtResource("1_2mno5")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

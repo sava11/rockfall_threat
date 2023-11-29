@@ -1,0 +1,131 @@
+[gd_scene load_steps=13 format=3 uid="uid://do6ekr4ebxv6w"]
+
+[ext_resource type="PackedScene" uid="uid://c13swd4n5xul" path="res://mats/objects/door/door.tscn" id="1_tomfm"]
+[ext_resource type="PackedScene" uid="uid://1ujd5agx1mf8" path="res://mats/objects/cr_lvls/line.tscn" id="3_7d86w"]
+[ext_resource type="PackedScene" uid="uid://ia3kf3sf7eqr" path="res://mats/objects/activeate_zone/activate_zone.tscn" id="4_1fr7a"]
+[ext_resource type="PackedScene" uid="uid://c0kxwu11p32ck" path="res://mats/objects/t_lvl/big_a.tscn" id="4_s6xad"]
+[ext_resource type="PackedScene" uid="uid://siqd3nx26uhc" path="res://mats/objects/button-leveller/laveler.tscn" id="5_4h87a"]
+[ext_resource type="PackedScene" uid="uid://bygq6v72nrft8" path="res://mats/objects/laser/laser.tscn" id="6_l5cvs"]
+[ext_resource type="PackedScene" uid="uid://6xesqvg8ugkg" path="res://mats/objects/check_laser/check_laser.tscn" id="7_6l64a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpab8"]
+resource_local_to_scene = true
+size = Vector2(320, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kb6r"]
+resource_local_to_scene = true
+size = Vector2(40, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muvoc"]
+size = Vector2(320, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tmlw"]
+resource_local_to_scene = true
+size = Vector2(20, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i65mc"]
+resource_local_to_scene = true
+size = Vector2(20, 500)
+
+[node name="lvl1" type="Node2D"]
+
+[node name="door" parent="." instance=ExtResource("1_tomfm")]
+position = Vector2(1140, 580)
+
+[node name="lock" parent="door" index="1"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/check_laser/key", "/root/main/world/lvl1/activate_zone/key")
+
+[node name="big_a" parent="." instance=ExtResource("4_s6xad")]
+position = Vector2(0, 500)
+
+[node name="c" parent="big_a" index="0"]
+position = Vector2(0, -170)
+shape = SubResource("RectangleShape2D_jpab8")
+
+[node name="c" parent="big_a/a" index="0"]
+position = Vector2(0, -170)
+shape = SubResource("RectangleShape2D_1kb6r")
+
+[node name="activate_zone" parent="." instance=ExtResource("4_1fr7a")]
+position = Vector2(1140, 540)
+
+[node name="key" parent="activate_zone" index="0"]
+drawing = false
+activate = true
+reset_when_blocked = true
+
+[node name="lock" parent="activate_zone/key" index="0"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/c/key")
+
+[node name="c" type="CollisionShape2D" parent="activate_zone"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_muvoc")
+
+[node name="c" parent="." instance=ExtResource("5_4h87a")]
+position = Vector2(780, 540)
+
+[node name="key" parent="c" index="1"]
+reset_when_blocked = true
+
+[node name="lock" parent="c/key" index="0"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/c2/key")
+
+[node name="c2" parent="." instance=ExtResource("5_4h87a")]
+position = Vector2(370, 540)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="p" parent="StaticBody2D" instance=ExtResource("3_7d86w")]
+polygon = PackedVector2Array(0, 0, 1170, 0, 1170, 500, 1110, 500, 1110, 80, 0, 80)
+
+[node name="p2" parent="StaticBody2D" instance=ExtResource("3_7d86w")]
+position = Vector2(0, 570)
+polygon = PackedVector2Array(0, 10, 1170, 10, 1170, 70, 0, 70)
+
+[node name="laser" parent="." instance=ExtResource("6_l5cvs")]
+position = Vector2(890, 570)
+rotation = 0.718676
+
+[node name="c" parent="laser/hirtbox" index="1"]
+shape = SubResource("RectangleShape2D_6tmlw")
+
+[node name="key" parent="laser" index="2"]
+drawing = false
+activate = true
+reset_when_blocked = true
+
+[node name="lock" parent="laser/key" index="0"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/c/key")
+
+[node name="laser2" parent="." instance=ExtResource("6_l5cvs")]
+position = Vector2(400, 80)
+rotation = 1.89377
+
+[node name="c" parent="laser2/hirtbox" index="1"]
+shape = SubResource("RectangleShape2D_i65mc")
+
+[node name="key" parent="laser2" index="2"]
+drawing = false
+activate = true
+reset_when_blocked = true
+
+[node name="lock" parent="laser2/key" index="0"]
+keys_paths = PackedStringArray("/root/main/world/lvl1/c/key")
+
+[node name="check_laser" parent="." instance=ExtResource("7_6l64a")]
+position = Vector2(1110, 320)
+need_power = 2.0
+
+[editable path="door"]
+[editable path="big_a"]
+[editable path="activate_zone"]
+[editable path="activate_zone/key"]
+[editable path="c"]
+[editable path="c/key"]
+[editable path="c2"]
+[editable path="c2/key"]
+[editable path="laser"]
+[editable path="laser/key"]
+[editable path="laser2"]
+[editable path="laser2/key"]
+[editable path="check_laser"]

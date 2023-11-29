@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo2oj0i7h2jbo"]
+
+[ext_resource type="Script" path="res://mats/objects/key_lock/activator.gd" id="1_430bx"]
+[ext_resource type="PackedScene" uid="uid://dwwf0vncyxm8o" path="res://mats/objects/key_lock/lock.tscn" id="2_mj2w2"]
+
+[node name="key" type="Node2D" groups=["SN"]]
+script = ExtResource("1_430bx")
+
+[node name="lock" parent="." instance=ExtResource("2_mj2w2")]
+
+[node name="color" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-10, -10, -20, 20, 20, 20, 10, -10)
+
+[connection signal="activated" from="lock" to="." method="_on_lock_activated"]

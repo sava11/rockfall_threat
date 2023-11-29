@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfpy3dw6k3w5s"]
+
+[ext_resource type="PackedScene" uid="uid://1ujd5agx1mf8" path="res://mats/objects/cr_lvls/line.tscn" id="1_4plpf"]
+[ext_resource type="PackedScene" uid="uid://c0kxwu11p32ck" path="res://mats/objects/t_lvl/big_a.tscn" id="2_qjad7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfhll"]
+resource_local_to_scene = true
+size = Vector2(320, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so7f0"]
+resource_local_to_scene = true
+size = Vector2(20, 160)
+
+[node name="lvl3" type="Node2D"]
+position = Vector2(590, 640)
+
+[node name="s" type="StaticBody2D" parent="."]
+
+[node name="p" parent="s" instance=ExtResource("1_4plpf")]
+polygon = PackedVector2Array(-110, 0, -110, 640, -390, 640, -390, 1040, 510, 1040, 510, 1000, -350, 1000, -350, 680, -70, 680, -70, 0)
+
+[node name="p2" parent="s" instance=ExtResource("1_4plpf")]
+polygon = PackedVector2Array(70, 0, 70, 680, 470, 680, 470, 1000, 510, 1000, 510, 640, 110, 640, 110, 0)
+
+[node name="big_a" parent="." instance=ExtResource("2_qjad7")]
+position = Vector2(0, 130)
+rotation = 1.5708
+
+[node name="c" parent="big_a" index="0"]
+shape = SubResource("RectangleShape2D_gfhll")
+
+[node name="c" parent="big_a/a" index="0"]
+shape = SubResource("RectangleShape2D_so7f0")
+
+[editable path="big_a"]

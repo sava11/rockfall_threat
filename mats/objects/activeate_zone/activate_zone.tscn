@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ia3kf3sf7eqr"]
+
+[ext_resource type="Script" path="res://mats/objects/activeate_zone/activate_zone.gd" id="1_w15wr"]
+[ext_resource type="PackedScene" uid="uid://bo2oj0i7h2jbo" path="res://mats/objects/key_lock/key.tscn" id="2_61ktd"]
+
+[node name="activate_zone" type="Area2D"]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("1_w15wr")
+
+[node name="key" parent="." instance=ExtResource("2_61ktd")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+
+[editable path="key"]

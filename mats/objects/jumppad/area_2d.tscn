@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://lvmkwlq06cnb"]
+
+[ext_resource type="Script" path="res://mats/objects/jumppad/jp.gd" id="1_aebyb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or3s0"]
+size = Vector2(24, 8)
+
+[sub_resource type="Gradient" id="Gradient_0kc1u"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_aebyb")
+
+[node name="c" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_or3s0")
+
+[node name="cp" type="CPUParticles2D" parent="."]
+amount = 128
+lifetime_randomness = 1.0
+emission_shape = 4
+emission_points = PackedVector2Array(-16, 0, -14, 0, -12, 0, -10, 0, -8, 0, -6, 0, -4, 0, -2, 0, 0, 0, 2, 0, 4, 0, 6, 0, 8, 0, 10, 0, 12, 0, 14, 0, 16, 0)
+emission_colors = PackedColorArray()
+direction = Vector2(5.705, 1)
+spread = 0.0
+gravity = Vector2(0, -98)
+color_ramp = SubResource("Gradient_0kc1u")
+
+[node name="asp" type="AudioStreamPlayer2D" parent="."]
+bus = &"effects"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvmde1fg3ltch"]
+
+[ext_resource type="Script" path="res://mats/objects/player/player.gd" id="1_bjf6l"]
+[ext_resource type="PackedScene" uid="uid://heog28crk5py" path="res://mats/objects/boxes/hurt_box.tscn" id="2_bo213"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ovrnb"]
+
+[sub_resource type="Animation" id="Animation_t8uxp"]
+resource_name = "get_up"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mq2ad"]
+_data = {
+"get_up": SubResource("Animation_t8uxp")
+}
+
+[node name="player" type="CharacterBody2D" groups=["SN"]]
+collision_layer = 5
+collision_mask = 5
+platform_on_leave = 2
+script = ExtResource("1_bjf6l")
+speed_vel = 200.0
+acc = 800.0
+deacc = 900.0
+jump_power = 300.0
+gr_power = 980.0
+
+[node name="get_up" type="RayCast2D" parent="."]
+position = Vector2(25, -35)
+target_position = Vector2(0, 15)
+
+[node name="full_height" type="RayCast2D" parent="get_up"]
+position = Vector2(0, 15)
+target_position = Vector2(0, -55)
+
+[node name="c" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -25)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 15, -10, 15)
+
+[node name="c1" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_ovrnb")
+
+[node name="p" type="Polygon2D" parent="."]
+position = Vector2(0, -25)
+color = Color(0.576471, 0.576471, 0.576471, 1)
+polygon = PackedVector2Array(-10, -10, -10, 15, -5, 25, 5, 25, 10, 15, 10, -10)
+
+[node name="ap" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mq2ad")
+}
+
+[node name="hurt_box" parent="." instance=ExtResource("2_bo213")]
+visible = false
+collision_mask = 16
+m_he = 5.0
+
+[node name="col" parent="hurt_box" index="0"]
+polygon = PackedVector2Array(-15, -55, -15, -10, -5, 0, 5, 0, 15, -10, 15, -55)
+
+[node name="rt" type="RemoteTransform2D" parent="."]
+
+[connection signal="no_he" from="hurt_box" to="." method="_on_hurt_box_no_he"]
+
+[editable path="hurt_box"]

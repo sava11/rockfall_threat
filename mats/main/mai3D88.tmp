@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdcxyi01im11m"]
+
+[ext_resource type="Script" path="res://mats/main/main_game.gd" id="1_dcjit"]
+[ext_resource type="PackedScene" uid="uid://dvmde1fg3ltch" path="res://mats/objects/player/player.tscn" id="2_6empj"]
+[ext_resource type="PackedScene" uid="uid://do6ekr4ebxv6w" path="res://mats/lvls/lvl1.tscn" id="2_ajpvd"]
+[ext_resource type="Script" path="res://mats/objects/gun/pistol.gd" id="3_5wbqv"]
+
+[node name="main" type="Node2D"]
+editor_description = "layers:
+-1 : background
+0 : map
+1 : characters
+"
+script = ExtResource("1_dcjit")
+
+[node name="cam" type="Camera2D" parent="."]
+position = Vector2(690, 580)
+zoom = Vector2(0.7, 0.7)
+
+[node name="world" type="Node2D" parent="."]
+
+[node name="lvl1" parent="world" instance=ExtResource("2_ajpvd")]
+
+[node name="pistol" type="Node2D" parent="world"]
+position = Vector2(460, 540)
+script = ExtResource("3_5wbqv")
+
+[node name="bsp" type="Marker2D" parent="world/pistol"]
+position = Vector2(12, -1)
+
+[node name="player" parent="." instance=ExtResource("2_6empj")]
+position = Vector2(690, 580)
+
+[node name="rt" type="RemoteTransform2D" parent="player"]
+remote_path = NodePath("../../cam")
+
+[node name="cl" type="CanvasLayer" parent="."]
+
+[node name="ui" type="Control" parent="cl"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="stats" type="VBoxContainer" parent="cl/ui"]
+layout_mode = 2
+offset_top = 240.0
+offset_right = 180.0
+offset_bottom = 292.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="hp" type="ProgressBar" parent="cl/ui/stats"]
+self_modulate = Color(0.541176, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 50.0
+show_percentage = false
+
+[node name="t" type="RichTextLabel" parent="cl/ui/stats/hp"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -12.5
+offset_right = 46.0
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "250"
+scroll_active = false
+
+[node name="str" type="ProgressBar" parent="cl/ui/stats"]
+self_modulate = Color(0, 0.541176, 0, 1)
+layout_mode = 2
+size_flags_vertical = 3
+value = 50.0
+show_percentage = false
+
+[node name="t" type="RichTextLabel" parent="cl/ui/stats/str"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -12.5
+offset_right = 46.0
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "250"
+scroll_active = false

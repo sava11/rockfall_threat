@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ujd5agx1mf8"]
+
+[ext_resource type="Script" path="res://mats/objects/cr_lvls/line.gd" id="1"]
+
+[node name="p" type="Polygon2D"]
+z_index = 1
+script = ExtResource("1")

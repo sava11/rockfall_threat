@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dutgm2y6l7ork"]
+
+[ext_resource type="Script" path="res://mats/objects/player_summoner/summon.gd" id="1_5ykj3"]
+
+[node name="RayCast2D" type="RayCast2D"]
+position = Vector2(0, -900)
+target_position = Vector2(0, 10000)
+script = ExtResource("1_5ykj3")

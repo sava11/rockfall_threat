@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxakgvlfkel2b"]
+
+[ext_resource type="PackedScene" uid="uid://1ujd5agx1mf8" path="res://mats/objects/cr_lvls/line.tscn" id="1_y4l8f"]
+[ext_resource type="PackedScene" uid="uid://c0kxwu11p32ck" path="res://mats/objects/t_lvl/big_a.tscn" id="2_w0wb1"]
+[ext_resource type="PackedScene" uid="uid://siqd3nx26uhc" path="res://mats/objects/button-leveller/laveler.tscn" id="4_yxt33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjt"]
+resource_local_to_scene = true
+size = Vector2(330, 510)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pwxh"]
+resource_local_to_scene = true
+size = Vector2(20, 510)
+
+[node name="lvl2" type="Node2D"]
+
+[node name="sb" type="StaticBody2D" parent="."]
+
+[node name="p" parent="sb" instance=ExtResource("1_y4l8f")]
+position = Vector2(-1150, 0)
+polygon = PackedVector2Array(30, 0, 1150, 0, 1150, 80, 110, 80, 110, 580, 30, 580)
+
+[node name="p2" parent="sb" instance=ExtResource("1_y4l8f")]
+position = Vector2(-1150, 570)
+polygon = PackedVector2Array(30, 10, 1150, 10, 1150, 70, 30, 70)
+
+[node name="c" parent="." instance=ExtResource("4_yxt33")]
+position = Vector2(-290, 520)
+
+[node name="c2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -510.0
+offset_top = 320.0
+offset_right = -470.0
+offset_bottom = 360.0
+
+[node name="t" type="RichTextLabel" parent="c2"]
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 60.0
+text = "сохраняться можно на F4
+загружаться на F5"
+
+[node name="big_a" parent="." instance=ExtResource("2_w0wb1")]
+position = Vector2(0, 340)
+scene_to_load = 0
+scene_to_delete = 1
+
+[node name="c" parent="big_a" index="0"]
+position = Vector2(65, -5)
+shape = SubResource("RectangleShape2D_j5wjt")
+
+[node name="a" parent="big_a" index="1"]
+position = Vector2(230, 0)
+
+[node name="c" parent="big_a/a" index="0"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_4pwxh")
+
+[editable path="c"]
+[editable path="c/key"]
+[editable path="big_a"]

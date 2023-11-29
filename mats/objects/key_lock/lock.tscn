@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwwf0vncyxm8o"]
+
+[ext_resource type="Script" path="res://mats/objects/key_lock/lock.gd" id="1_hslpj"]
+
+[node name="lock" type="Node"]
+script = ExtResource("1_hslpj")
+
+[node name="color" type="Polygon2D" parent="."]

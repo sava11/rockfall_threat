@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c13swd4n5xul"]
+
+[ext_resource type="Script" path="res://mats/objects/door/door.gd" id="1_tuqrv"]
+[ext_resource type="PackedScene" uid="uid://1ujd5agx1mf8" path="res://mats/objects/cr_lvls/line.tscn" id="2_52y57"]
+[ext_resource type="PackedScene" uid="uid://dwwf0vncyxm8o" path="res://mats/objects/key_lock/lock.tscn" id="3_psbml"]
+
+[node name="door" type="Node2D"]
+script = ExtResource("1_tuqrv")
+
+[node name="d" type="StaticBody2D" parent="."]
+
+[node name="p" parent="d" instance=ExtResource("2_52y57")]
+position = Vector2(0, -80)
+color = Color(0.458824, 0.458824, 0.458824, 1)
+polygon = PackedVector2Array(-10, 0, -10, 80, 10, 80, 10, 0)
+
+[node name="lock" parent="d" instance=ExtResource("3_psbml")]
+
+[connection signal="activated" from="d/lock" to="." method="_on_lock_activated"]
